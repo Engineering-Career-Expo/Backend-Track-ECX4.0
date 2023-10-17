@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Express • eBookly</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body>
+			<nav class="navbar navbar-dark bg-dark">
+					<div class="display-3 text-uppercase navbar-brand font-weight-bold "> Welcome </div>
+					<div>
+						<div >
+							<a href="/login" class="logout btn btn-md btn-info" type="submit">Login</a>
+						</div>
+					</div>
+			</nav>
+		<section class="container h-100">
+			<header>
+				<h1 class="text-center display-1">eBookly</h1>
+			</header>
+			<section class="row h-100 mt-5 justify-content-center">
+				<h2 class="text-center">eBookly is a collection of Great Classical Books of the Western World</h2>
+				<div class="row w-100">
+				<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Pages</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% var count = 0; %>
+		<% books.forEach(function(book) { %>
+    <tr>
+	    <th scope="row"><%= ++count%></th>
+      <td><%= book.title%></td>
+      <td><%= book.author%></td>
+      <td><%= book.pages%></td>
+    </tr>
+				<% }); %>
+  </tbody>
+</table>
+</div>
+<footer>
+	<p style="color:chocolate"> login to see more and download any book of your choice </p>
+</footer>
+			</section>
+		</section>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>
