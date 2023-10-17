@@ -8,7 +8,6 @@ router.get('/', fetchBooks, function(req, res, next) {
   next();
 }, fetchBooks, function(req, res, next) {
   res.locals.filter = null;
-  console.log("books " ,res.locals.books)
   res.render('home', { user: req.user });
 });
 module.exports = router;

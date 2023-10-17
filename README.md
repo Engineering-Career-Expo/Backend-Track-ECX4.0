@@ -11,7 +11,7 @@ This would help you bootstrap your journey on working with authentication using 
 ## Credit
 
 Created by ECX BACKEND TRACK TUTORS
-with some help from  [Jared Hanson](https://www.jaredhanson.me/) @passportjs tutorial
+with some help from  @passportjs tutorial
 
 ## GUIDE
 * Download the Repo

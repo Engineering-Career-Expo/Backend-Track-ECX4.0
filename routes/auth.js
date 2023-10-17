@@ -3,7 +3,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var crypto = require('crypto');
 
-const { connectToDb, getDb}  = require('../database')
+const { connectToDb, getDb, fetchBooks}  = require('../database')
 
 var router = express.Router();
 let dbs;
@@ -16,52 +16,6 @@ connectToDb((err) => {
     else
 	console.log("an error occured during connection")
 })
-
-function fetchBooks(req, res, next){
-    let match_idx
-    let reg = /\(([^)]+)\)/
-    let obj =Object.assign({}, req.rawHeaders)
-    for(i=0; i< Object.keys(obj).length; i++)
-	if(obj[i].search("Mozilla") > -1)
-        {
-		match_idx = i
-		break
-	}
-    let match  = reg.exec(obj[match_idx])
-    if(match){
-        console.log(req.ip , " <---> ", match[1] ,"| requested a book\n")
-    	dbs.collection('userlog')
-    	.insertOne({ip: req.ip, device: match[1], date: new Date()})
-    }
-    else
-	console.log(req.ip , " <---> ",obj, "| requested a book\n")
-    let books = []
-
-    dbs.collection('books')
-    .find()
-    .sort({author: 1})
-    .forEach(book=> books.push(book))
-    .then(() => {
-    var books_col = books.map(function(book) {
-      return {
-        author: book.author,
-        title: book.Title,
-        pages: book.pages,
-	description: book.description , //book.description
-        //completed: row.completed == 1 ? true : false,
-        //url: '/' + row.id
-      }
-    });
-    res.locals.books = books_col;
-    //res.locals.activeCount = todos.filter(function(todo) { return !todo.completed; }).length;
-    //res.locals.completedCount = todos.length - res.locals.activeCount;
-    next();
-    })
-    .catch((err) =>{
-        //res.status(500).json({error: 'database query error occurred'})
-        return err;
-    })
-}
 
 router.get('/books', function(req, res, next) {
   if (!req.user) { return res.render('home'); }
